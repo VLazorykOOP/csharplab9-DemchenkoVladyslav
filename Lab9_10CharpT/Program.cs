@@ -1,4 +1,5 @@
-﻿//Console.WriteLine("Task 1");
+﻿using System.Collections;
+//Console.WriteLine("Task 1");
 //string s1 = Console.ReadLine();
 //string s2 = Console.ReadLine();
 //Stack<char> stack = new Stack<char>(s1.ToCharArray());
@@ -54,13 +55,14 @@
 Console.WriteLine("Task 3");
 string s1 = Console.ReadLine();
 string s2 = Console.ReadLine();
-Stack<char> stack = new Stack<char>(s1.ToCharArray());
+ArrayList al1 = new ArrayList(s1.ToCharArray());
+ArrayList al2 = new ArrayList(s2.ToCharArray());
+al1.Reverse();
 bool f = false;
-foreach (char c in s2)
+for (int i = 0; i < al1.Count && i < al2.Count; i++)
 {
-    if (c != stack.Pop())
+    if (!(al1[i] == al2[i]))
     {
-        Console.WriteLine("String is not reversed");
         f = true;
         break;
     }
@@ -68,4 +70,40 @@ foreach (char c in s2)
 if (!f)
 {
     Console.WriteLine("String is reversed");
+}
+else
+       Console.WriteLine("String is not reversed");
+
+
+
+
+ArrayList q1 = new ArrayList();
+ArrayList q2 = new ArrayList();
+
+using (FileStream fs = new FileStream("task3read.txt", FileMode.Open))
+{
+    using (StreamReader sr = new StreamReader(fs))
+    {
+        string line;
+        while ((line = sr.ReadLine()) != null)
+        {
+            int number = int.Parse(line);
+            if (number >= 0)
+                q1.Add(number);
+            else
+                q2.Add(number);
+        }
+    }
+}
+Console.WriteLine(" >= 0");
+foreach (int num in q1)
+{
+    Console.Write(num + " ");
+}
+
+Console.WriteLine();
+Console.WriteLine(" < 0");
+foreach (int num in q2)
+{
+    Console.Write(num + " ");
 }
